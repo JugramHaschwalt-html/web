@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaby Ayala | Amor Eterno</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap');
+        
+        :root {
+            --primary: #f8c3cd;
+            --secondary: #e87a90;
+            --accent: #d05a6e;
+            --light: #fff9fb;
+            --dark: #5d4352;
+            --font-script: 'Great Vibes', cursive;
+            --font-main: 'Montserrat', sans-serif;
+            --transition: all 0.4s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-main);
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .page-wrapper {
+            position: relative;
+        }
+        
+        /* Elementos decorativos */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+            overflow: hidden;
+        }
+        
+        .heart {
+            position: absolute;
+            height: 30px;
+            width: 30px;
+            opacity: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e87a90'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            animation: floatHeart 10s ease-in infinite;
+        }
+        
+        @keyframes floatHeart {
+            0% {
+                opacity: 0;
+                transform: translateY(0) rotate(0deg);
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.2;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-1000px) rotate(360deg);
+            }
+        }
+        
+        /* Borde decorativo */
+        .decorative-border {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            pointer-events: none;
+            z-index: 5;
+        }
+        
+        .decorative-border::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px dashed var(--secondary);
+            border-radius: 5px;
+            opacity: 0.7;
+        }
+        
+        /* Esquinas decorativas */
+        .corner {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            z-index: 6;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e87a90'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-size: contain;
+            opacity: 0.7;
+        }
+        
+        .corner-top-left {
+            top: 10px;
+            left: 10px;
+            transform: rotate(-45deg);
+        }
+        
+        .corner-top-right {
+            top: 10px;
+            right: 10px;
+            transform: rotate(45deg);
+        }
+        
+        .corner-bottom-left {
+            bottom: 10px;
+            left: 10px;
+            transform: rotate(-135deg);
+        }
+        
+        .corner-bottom-right {
+            bottom: 10px;
+            right: 10px;
+            transform: rotate(135deg);
+        }
+        
+        /* Header */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 20px;
+        }
+        
+        .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(248, 195, 205, 0.2) 0%, rgba(232, 122, 144, 0.3) 100%);
+            z-index: -1;
+        }
+        
+        .header-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.2' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+        
+        .logo {
+            font-family: var(--font-script);
+            font-size: 3.5rem;
+            color: var(--secondary);
+            margin-bottom: 30px;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 2s ease;
+        }
+        
+        .logo::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--secondary), transparent);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .hero-title {
+            font-size: 2.2rem;
+            font-weight: 300;
+            color: var(--dark);
+            margin-bottom: 20px;
+            max-width: 800px;
+            animation: fadeIn 2s ease 0.5s backwards;
+        }
+        
+        .hero-title span {
+            display: block;
+            font-family: var(--font-script);
+            font-size: 3rem;
+            color: var(--accent);
+            margin: 15px 0;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: var(--dark);
+            max-width: 700px;
+            margin-bottom: 40px;
+            animation: fadeIn 2s ease 1s backwards;
+        }
+        
+        .scroll-btn {
+            font-size: 1rem;
+            color: var(--dark);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px 20px;
+            border: 1px solid var(--secondary);
+            border-radius: 50px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 2s ease 1.5s backwards;
+        }
+        
+        .scroll-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: 0.5s;
+        }
+        
+        .scroll-btn:hover::before {
+            left: 100%;
+        }
+        
+        .scroll-btn:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Secciones */
+        section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .section-title {
+            font-family: var(--font-script);
+            font-size: 3rem;
+            color: var(--secondary);
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--secondary), transparent);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Galería de fotos */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 60px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            transform: scale(0.98);
+            height: 300px;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 15px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+        
+        .gallery-title {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .gallery-date {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Carta de amor */
+        .love-letter {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            position: relative;
+            margin-top: 60px;
+            transition: var(--transition);
+        }
+        
+        .love-letter::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 1px dashed var(--primary);
+            border-radius: 8px;
+            pointer-events: none;
+        }
+        
+        .letter-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--dark);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .letter-quote {
+            font-family: var(--font-script);
+            font-size: 2rem;
+            color: var(--accent);
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .letter-signature {
+            font-family: var(--font-script);
+            font-size: 2rem;
+            color: var(--secondary);
+            text-align: right;
+        }
+        
+        /* Momentos especiales */
+        .timeline {
+            position: relative;
+            margin-top: 60px;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            padding-left: 30px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: -8px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(232, 122, 144, 0.3);
+        }
+        
+        .timeline-date {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        
+        .timeline-title {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-description {
+            font-size: 1rem;
+            color: var(--dark);
+            line-height: 1.7;
+        }
+        
+        /* Canciones */
+        .playlist {
+            margin-top: 60px;
+        }
+        
+        .song-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 15px;
+            transition: var(--transition);
+        }
+        
+        .song-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .song-number {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-right: 20px;
+            font-family: var(--font-script);
+        }
+        
+        .song-info {
+            flex: 1;
+        }
+        
+        .song-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .song-artist {
+            font-size: 0.9rem;
+            color: var(--secondary);
+        }
+        
+        .song-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(248, 195, 205, 0.2);
+            border-radius: 50%;
+            margin-left: 15px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .song-icon:hover {
+            background-color: var(--primary);
+        }
+        
+        .song-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--accent);
+        }
+        
+        /* Formulario de contacto */
+        .contact-form {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            margin-top: 60px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid rgba(232, 122, 144, 0.3);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(232, 122, 144, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            font-size: 1rem;
+            font-weight: 500;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-block;
+            box-shadow: 0 10px 20px rgba(232, 122, 144, 0.3);
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(232, 122, 144, 0.4);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+        
+        .footer-title {
+            font-family: var(--font-script);
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .footer-text {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.7;
+            opacity: 0.8;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            background-color: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        .social-link svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+        
+        .copyright {
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.8rem;
+            }
+            
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .hero-title span {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .letter-quote {
+                font-size: 1.7rem;
+            }
+            
+            .timeline {
+                padding-left: 15px;
+            }
+            
+            .timeline-item {
+                padding-left: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- Elementos decorativos -->
+        <div class="floating-hearts" id="hearts"></div>
+        <div class="decorative-border"></div>
+        <div class="corner corner-top-left"></div>
+        <div class="corner corner-top-right"></div>
+        <div class="corner corner-bottom-left"></div>
+        <div class="corner corner-bottom-right"></div>
+        
+        <!-- Header -->
+        <header id="inicio">
+            <div class="header-bg"></div>
+            <h1 class="logo">Gaby Ayala</h1>
+            <h2 class="hero-title">
+                Cada momento contigo es un tesoro 
+                <span>Amor sin límites</span> 
+                Para siempre y más allá
+            </h2>
+            <p class="hero-subtitle">
+                Este espacio está dedicado a celebrar nuestro amor, los momentos especiales que hemos compartido y los muchos más que nos esperan en este hermoso viaje juntos.
+            </p>
+            <button class="scroll-btn" onclick="document.getElementById('nuestra-historia').scrollIntoView({behavior: 'smooth'})">Descubre nuestra historia</button>
+        </header>
+        
+        <!-- Nuestra Historia -->
+        <section id="nuestra-historia">
+            <h2 class="section-title">Nuestra Historia</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date"> Noveno grado jsjs</div>
+                    <h3 class="timeline-title">El día que nos conocimos</h3>
+                    <p class="timeline-description">Fue como si el universo supiera exactamente cuándo y dónde debíamos encontrarnos. Una mirada, una sonrisa, y supe que algo especial estaba comenzando.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">salimos a comer en tu cumple</div>
+                    <h3 class="timeline-title">Nuestra primera cita</h3>
+                    <p class="timeline-description"> disfrutamos el momento especial dado que era tu cumpeaños y disfrutamos muchoooo.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">Fuimos a la playa</div>
+                    <h3 class="timeline-title">Nuestro primer viaje juntos</h3>
+                    <p class="timeline-description">Escapamos a la playa por un fin de semana con tu familia y me senti muy bien, recivido y querido.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">El año antepasado aunque no eramos novios kjsdjksd</div>
+                    <h3 class="timeline-title">Te dije "Te amo" por primera vez</h3>
+                    <p class="timeline-description">Las palabras salieron del corazón, sinceras y verdaderas. Tu sonrisa iluminó todo mi mundo cuando me respondiste que también me amabas.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">Hoy</div>
+                    <h3 class="timeline-title">Cada día contigo</h3>
+                    <p class="timeline-description">Cada amanecer es un regalo cuando lo comparto contigo. Nuestro amor crece día a día, y no hay nada más hermoso que construir juntos nuestros sueños.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Galería de Fotos -->
+        <section id="momentos">
+            <h2 class="section-title">Nuestros Momentos "inventados"</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/500/f8c3cd/ffffff" alt="Momento especial" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3 class="gallery-title">Nuestro primer aniversario</h3>
+                        <p class="gallery-date">15 de Mayo, 2023</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/500/e87a90/ffffff" alt="Momento especial" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3 class="gallery-title">Puesta de sol en la playa</h3>
+                        <p class="gallery-date">28 de Junio, 2023</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/500/d05a6e/ffffff" alt="Momento especial" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3 class="gallery-title">Cena bajo las estrellas</h3>
+                        <p class="gallery-date">14 de Febrero, 2023</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/500/f8c3cd/ffffff" alt="Momento especial" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3 class="gallery-title">Noche de baile</h3>
+                        <p class="gallery-date">5 de Septiembre, 2023</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/500/e87a90/ffffff" alt="Momento especial" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3 class="gallery-title">Viaje a las montañas</h3>
+                        <p class="gallery-date">20 de Octubre, 2023</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/500/d05a6e/ffffff" alt="Momento especial" class="gallery-img">
+                    <div class="gallery-caption">
+                        <h3 class="gallery-title">Picnic en el parque</h3>
+                        <p class="gallery-date">12 de Abril, 2023</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Carta de Amor -->
+        <section id="carta">
+            <h2 class="section-title">Mi Carta Para Ti</h2>
+            <div class="love-letter">
+                <p class="letter-content">
+                    Querida Gaby chan,
+                </p>
+                <p class="letter-content">
+                    Desde que llegaste a mi vida, todo ha adquirido un brillo especial. Cada mañana despierto con una sonrisa al saber que existes, que formas parte de mi mundo, que tengo la fortuna de amarte y ser amado por ti.
+                </p>
+                <p class="letter-content">
+                    Eres ese sueño que nunca supe que tenía hasta que te encontré. Tu sonrisa ilumina mis días más oscuros, tu voz es la melodía que calma todas mis tempestades, y tu amor es el refugio al que siempre quiero volver.
+                </p>
+                <p class="letter-quote">
+                    "Contigo aprendí que el amor no se trata de grandes gestos, sino de pequeños momentos que construyen una vida extraordinaria."
+                </p>
+                <p class="letter-content">
+                    Prometo amarte cada día más, caminar a tu lado en cada aventura, sostenerte en los momentos difíciles y celebrar contigo cada victoria. Nuestro amor es el viaje más hermoso que podría haber imaginado.
+                </p>
+                <p class="letter-content">
+                    Gracias por ser exactamente quien eres, por amarme como lo haces, y por construir conmigo esta historia que apenas comienza.
+                </p>
+                <p class="letter-signature">
+                    Con todo mi amor,
+                </p>
+            </div>
+        </section>
+        
+        <!-- Nuestras Canciones -->
+        <section id="canciones">
+            <h2 class="section-title">Nuestras Canciones</h2>
+            <div class="playlist">
+                <div class="song-item">
+                    <div class="song-number">1</div>
+                    <div class="song-info">
+                        <h3 class="song-title">Perfect</h3>
+                        <p class="song-artist">Ed Sheeran</p>
+                    </div>
+                    <div class="song-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
